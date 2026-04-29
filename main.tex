@@ -36,7 +36,7 @@
 \begin{document}
 \singlespacing
 
-\begin{multicols*}{4}
+\begin{multicols*}{3}
 
 \tiny
 
@@ -44,119 +44,124 @@
 
 % ===== Week 1: Introduction / Probability Review (compact version) =====
 
-\bulletPoint{Probability Basics}:
-$p(x)=\int p(x,y)\,dy$ \\
-Bayes' rule:
-$p(x\mid y)=\frac{p(x,y)}{p(y)}=\frac{p(y\mid x)\,p(x)}{p(y)}.$
-Independence:
-$X\perp Y \iff p(x,y)=p(x)p(y).$
-For i.i.d.\ $\mathcal D=\{x_1,\dots,x_n\}$:
-$p(\mathcal D)=\prod_{i=1}^n p(x_i),\;
-\log p(\mathcal D)=\sum_{i=1}^n \log p(x_i).$
+\bulletPoint{Pythagorean Triples}:
+$a^2+b^2=c^2$
 
-\bulletPoint{Expectation / Variance / Covariance}:
+\textcolor{MidnightBlue}{只要有一个解（a,b,c), 那么对于positive integer d, $(da)^2+(db)^2=(dc)^2$}
 
-$\mathbb E[X]=\int x\,p(x)\,dx,\;
-\mathbb E[g(X)]=\int g(x)\,p(x)\,dx.$\\
-$\mathrm{var}(X)=\mathbb E[X^2]-\mathbb E[X]^2$\\
-$\mathrm{cov}(X,Y)=\mathbb E[XY]-\mathbb E[X]\mathbb E[Y].$
-$\mathrm{var}(X+Y)=\mathrm{var}(X)+\mathrm{var}(Y)+2\,\mathrm{cov}(X,Y).$\\
-If $X,Y$ are independent, then
-$\mathbb E[XY]=\mathbb E[X]\mathbb E[Y].$
+\bulletPoint{Primitive Pythagorean Triple (PPT)}:如果a,b,c 没有公因子就叫PPT.
+eg：（3，4，5） 是PPT； （6，8，10）不是PPT--> common factor=2
 
-\bulletPoint{Vector Random Variables}:
-For $x=[x_1,\dots,x_n]^\top$,
-$\mathbb E[x]=[\mathbb E[x_1],\dots,\mathbb E[x_n]]^\top,\;
-\mathbb E[Ax]=A\mathbb E[x].$
-$\mathrm{cov}(x)=\Sigma_{xx}=\mathbb E[(x-\mathbb E[x])(x-\mathbb E[x])^\top].$
-$\mathrm{cov}(Ax)=A\,\mathrm{cov}(x)\,A^\top,\;
-\mathrm{cov}(x,y)=\Sigma_{xy}=\mathbb E[(x-\mathbb E[x])(y-\mathbb E[y])^\top].$
+-soultion of $a^2+b^2=c^2$ must be "odd+even=odd"
 
-\bulletPoint{Bernoulli Distribution}:
-$X\sim \mathrm{Bern}(\theta),\; x\in\{0,1\},\;
-p(x\mid \theta)=\theta^x(1-\theta)^{1-x}.$
-$\mathbb E[X]=\theta,\; \mathrm{var}(X)=\theta(1-\theta).$
+\textcolor{MidnightBlue}{Note：看到整数平方要想到奇偶性}
 
-\bulletPoint{Uniform Distribution}:
-$X\sim \mathrm{Unif}(a,b)$
-$p(x\mid a,b)=\frac{1}{b-a}$ for $a\le x\le b$, else $0$.
-$\mathbb E[X]=\frac{a+b}{2},\;
-\mathrm{var}(X)=\frac{(b-a)^2}{12}.$
+\textcolor{blue}{Theorem：} Every PPT (a,b,c) with a odd satisfies: $a=st, b=\frac{s^2-t^2}{2}, c=\frac{s^2+t^2}{2}, s>t\geq1$ are to be odd and no common factor.
 
-\bulletPoint{Exponential Distribution}:
-$X\sim \mathrm{Exp}(\lambda),\;
-p(x\mid \lambda)=\lambda e^{-\lambda x}$ for $x\ge 0$, else $0$.
-$\mathbb E[X]=\frac{1}{\lambda},\;
-\mathrm{var}(X)=\frac{1}{\lambda^2}.$
-
-\bulletPoint{Binomial Distribution}:
-$X\sim \mathrm{Bin}(n,\theta),\;
-P(X=x)=\binom{n}{x}\theta^x(1-\theta)^{n-x}; \binom{n}{x} = \frac{n!}{x!(n-x)!},\; x=0,\dots,n.$
-$\mathbb E[X]=n\theta,\; \mathrm{var}(X)=n\theta(1-\theta).$
+\textcolor{MidnightBlue}{整除的基本性质：if d|x, d|y, then d|(x+y),d|(x-y)}
 
 
-\bulletPoint{Parametric Bayesian Model}:
-Assume $x\sim p(x\mid \theta)$. Then
-$p(\theta\mid x)=\frac{p(x\mid \theta)p(\theta)}{p(x)}
-\propto p(x\mid \theta)\,p(\theta),$
-where posterior $\propto$ likelihood $\times$ prior.
-Normalization:
-$p(x)=\int p(x\mid \theta)p(\theta)\,d\theta.$
 
-\bulletPoint{Conjugate Prior}:
-If $p(\theta)$ and $p(\theta\mid x)$ have the same form, then $p(\theta)$ is a conjugate prior for $p(x\mid \theta)$.
-$\log p(\theta\mid x)=\log p(x\mid \theta)+\log p(\theta)+\mathrm{const}.$
 
-\bulletPoint{Beta Distribution}:
-$\theta\sim \mathrm{Beta}(a,b),\; a,b>0,\; \theta\in[0,1],$
 
-$p(\theta\mid a,b)=
-\frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}
-\theta^{a-1}(1-\theta)^{b-1}.
-$
+\bulletPoint{Well-ordering Principle}: every non-empty set of positive integers contains a least element.
 
-\bulletPoint{Bernoulli + Beta}:\\
-1. For $x\in\{0,1\}$,
-{\color{blue}$p(\theta\mid x)\propto \mathrm{Bern}(x\mid \theta)\,\mathrm{Beta}(\theta\mid a,b)
-\propto \theta^{x+a-1}(1-\theta)^{b-x}.$}\\
-Hence
-$\theta\mid x \sim \mathrm{Beta}(a+x,\; b+1-x).$\\
-2. For i.i.d.\ $\mathcal D=\{x_1,\dots,x_n\}$,\\
-$p(\mathcal{D}\mid \theta)=
-\prod_{i=1}^n p(x_i\mid \theta)=
-\prod_{i=1}^n \theta^{x_i}(1-\theta)^{1-x_i}.$
+\textcolor{blue}{Division Algorithm：} Let $a,b \in \mathbb{Z}, b > 0$. Then $\exists$ a unique pair $q,r \in \mathbb{Z}$. s.t. $a = qb + r$
+; and $0 \leq r < b$. $q$ is called the quotient and $r$ is called the remainder.
 
-{\color{blue}$p(\theta\mid \mathcal{D})
-\propto
-p(\mathcal{D}\mid \theta)\,p(\theta)
-\propto
-	\theta^{\sum_{i=1}^n x_i + a - 1}
-(1-\theta)^{\,n-\sum_{i=1}^n x_i + b - 1}.$}
+\textcolor{blue}{Def:} Let $a,b \in \mathbb{Z}.$ if $\exists c \in \mathbb{Z}, s.t. b=ac $, then a divides b, a|b
 
-\useshortskip\noindent\resizebox{\linewidth}{!}{$
-{\color{RoyalPurple!80!black}
-\theta\mid \mathcal D \sim
-\mathrm{Beta}\!\left(a+\sum_{i=1}^n x_i,\; b+n-\sum_{i=1}^n x_i\right).}
-$}\\
-\useshortskip\noindent\resizebox{\linewidth}{!}{$
-\textcolor{MidnightBlue}{
-\bm{\log p(\mathcal D\mid \theta)=
-\sum_{i=1}^n \bigl(x_i\log\theta+(1-x_i)\log(1-\theta)\bigr).}
-}
-$}
+\textcolor{red}{Note:} gcd(0,k)=k; gcd(0,0) is not defined.
 
-\bulletPoint{Categorical Distribution}:
-$X\sim \mathrm{Cat}(\theta_1,\dots,\theta_K),\;
-\theta_k\ge 0,\; \sum_{k=1}^K \theta_k=1,\;
-P(X=k)=\theta_k.$
-For i.i.d.\ $\mathcal D=\{x_1,\dots,x_n\}$ and
-$N_k=\sum_{i=1}^n \mathbf 1\{x_i=k\}$,
-{\color{blue}
-$p(\mathcal D\mid \theta)=\prod_{k=1}^K \theta_k^{N_k}.$
-}
+\bulletPoint{Bezout lemma}: let a,b be non-zero integers with gcd (a,b). Then $\exists$ integer $s$ and $t$ s.t. $as+bt=(a,b)$. Any common divisor of a, b divides (a,b)
+最大公因数除了gcd还能写成a和b的整数线性组合
+
+eg. a=17, b=5. since gcd(17,5)=1. so $\exists$ s and t s.t. $17s+5t=1$ -> 1=17-3·5 -> $s=1, t=-3$
+
+\bulletPoint{Extended Euclidean algorithm}: let $a,b \in \mathbb{Z}, \exists integers q_1, r_1$ s.t.
+
+$a=q_1\textcolor{violet}{b}+ \textcolor{brown}{r_1}$.        
+
+$\textcolor{violet}{b}=q_2\textcolor{brown}{r_1}+ \textcolor{blue}{r_2}$.        
+
+$\textcolor{brown}{r_1}=q_3\textcolor{blue}{r_2}+\textcolor{MidnightBlue}{r_3}$.      
+
+$\textcolor{blue}{r_2} =q_4\textcolor{MidnightBlue}{r_3}+r_4$.      
+
+
+
+\bulletPoint{Congruences}:
+
+\textcolor{blue}{Def:} The congruence $a \equiv b \pmod n$ means that the difference $(a-b)$ is divisible by $n$.
+In other words, $a$ is equal to a multiple of $n$ plus $b$, or $a = nq + b. $
+
+eg. 15$\equiv$ 1 mod 7, -3$\equiv$ 14 mod 17, 10$\equiv$ 0 mod 5
+
+\bulletPoint{Congruences class}:
+
+eg. $-4\equiv1 \equiv6\equiv11\equiv16 mod 5$ is a congruence class.
+
+\bulletPoint{complete system of residue modulo n}:
+\textcolor{ MidnightBlue}{一个集合，如果每个整数都恰好与其中一个元素同余，就是complete system of residue modulo n}
+
+eg. modulo 5, complete system of  residue is {(0,1,2,3,4)}. Another is {(-2,-1,0,1,2)} \textcolor{MidnightBlue}{模几就是几个类：所有$\equiv$ 1 mod 5的整数，...$\equiv$ 2 mod 5, ...$\equiv$ 3 mod 5,...$\equiv$ 4 mod 5}
+
+\textcolor{blue}{Theorem:} if a,b,c,d,n are integers, $n>0$. $a\equiv b $mod n, $c\equiv d $mod n then, $a+c \equiv b+d$ mod n; $a-c \equiv b-d$ mod n; $ac \equiv bd$ mod n;
+
+eg. compute 93·17 modulo 6. since $93\equiv 3$ mod 6 and $17\equiv-1$ mod 4. so $93·17=-3$ mod 6 
+
+\bulletPoint{The ring $\mathbb{Z}_n$}:
+
+\textcolor{blue}{Def:} $\mathbb{Z}_n = \{\overline{0}, \overline{1}, \ldots, \overline{n-1}\}.$
+
+\textcolor{blue}{addition and multiplication:} 
+
+$\overline{a}+\overline{b}=\overline{c} \Longleftrightarrow a+b=c \pmod n.$
+
+
+$\overline{a}-\overline{b}=\overline{c} \Longleftrightarrow a-b=c \pmod n.$
+
+$\overline{a}\cdot\overline{b}=\overline{c} \Longleftrightarrow a\cdot b=c \pmod n.$ where $0 \leq a,b<n$.
+
+\textcolor{blue}{Wilson's Theorem:} if p is prime then $(p-1)!\equiv$ mod p
+
+\textcolor{blue}{inverse of $\mathbb{Z}_n$ and application of inverse:} 在$\mathbb{Z}_n$中， 如果存在$\overline{x}$使：$\overline{a}·\overline{x}=1$, $\overline{x}$是$\overline{a}$的 inverse --> $ax\equiv 1$ mod n. 
+什么时候有逆元？ a 在mod n下有逆元 $\Longleftrightarrow$ gcd(a,n) =1 (by Bezout identity: if gcd(a,n)=1, $\exists$ x, y such that $ax+ny=1$ -> $ax\equiv 1$ mod n -> x有逆元)
+
+eg. what's inverse of 3 mod 7?  $3x\equiv 1$ mod7 ->$3·5=15\equiv 1$ mod 7 -> so $3^{-1}\equiv5 $ mod 7 
+
+
+
+\bulletPoint{Chinese reminder theorem}:
+
+\textcolor{blue}{Def:}
+Let $m_1,m_2,\ldots,m_k$ be natural numbers such that the greatest common divisor of any two of them is $1$.
+Let $a_1,a_2,\ldots,a_k$ be arbitrary integers.
+Then there is $x$ such that:
+$x \equiv a_1 \pmod{m_1}; x \equiv a_2 \pmod{m_2} \hdots x \equiv a_k \pmod{m_k}$
+
+
+This solution $(x)$ is unique modulo $m_1m_2\cdots m_k$.
+
+eg. solve the congruence: $x\equiv1$ mod 2, $x\equiv3$ mod 5, $x\equiv4$ mod 7
+
+solution: $N=2·5·7=70, N_1=\frac{70}{2}=35, N_2= \frac{70}{5}=14, N_3=\frac{70}{7}= 10$. So: $35x_1\equiv 1$ mod 2, $14x_2\equiv 1$ mod 5, $10x_3\equiv 1$ mod 7. 
+
+We can take $x_1=1, x_2=4, x_3=5$. so $x=a_1x_1N_1+a_2x_2N_2+a_3x_3N_3=1·1·35+3·4·14+4·5·10=403$ \textcolor{red}{Note:} $x=53 $ is also a solution as $53=403-70·5$
+
+\textcolor{blue}{Theorem:} Let m,n be two integers s.t. \textcolor{red}{$gcd(m,n)=1$}. Then the congruece $x\equiv a$ mod m·n has the same solution as congruence: $x\equiv a$ mod m , $x\equiv a$ mod n
+
+\textcolor{blue}{Conclusion.} Knowing a number $x \bmod N$ = knowing $x \bmod$ each of the prime powers $p_j^{e_j}$ in
+$N = p_1^{e_1} \cdots p_n^{e_n}$.
+eg. knowing $x \equiv 27 \pmod{30}$ =knowing
+$x \equiv 1 \pmod{2}$, $x \equiv 0 \pmod{3}$, $x \equiv 2 \pmod{5}$.
+
+\textcolor{MidnightBlue}{一般原则： 对于$ax\equiv b$ mod n, 先看$d=gcd(a,n)$, 若$d\nmid n$,无解； 若$d\mid n$,有解，可以先约掉d再求}
+
+
 
 \bulletPoint{Dirichlet Distribution}:
-$\theta=(\theta_1,\dots,\theta_K),\;
+$\theta=(\theta_1,\dots,\theta_K),\; 
 \theta_k\in[0,1],\; \sum_{k=1}^K \theta_k=1.$
 {\color{blue}
 $p(\theta\mid \alpha)=
